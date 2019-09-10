@@ -22,13 +22,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="Имя" Grid.Column="0" Grid.Row="0" Margin="1"/>
-        <Label Content="Пол" Grid.Column="0" Grid.Row="1" Margin="1"/>
-        <Label Content="День рождения" Grid.Column="0" Grid.Row="2" Margin="1"/>
-        <Label Content="Рост" Grid.Column="0" Grid.Row="3" Margin="1"/>
-        <Label Content="Вес" Grid.Column="0" Grid.Row="4" Margin="1"/>
-        <Label Content="Цель пользователя" Grid.Column="0" Grid.Row="5" Margin="1"/>
-        <Label Content="Количество тренировок в неделю" Grid.Column="0" Grid.Row="6" Margin="1"/>
+        <Label Content="Имя" Grid.Column="0" Grid.Row="0" Margin="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <Label Content="Пол" Grid.Column="0" Grid.Row="1" Margin="1" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <Label Content="День рождения" Grid.Column="0" Grid.Row="2" Margin="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Рост" Grid.Column="0" Grid.Row="3" Margin="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Вес" Grid.Column="0" Grid.Row="4" Margin="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Цель пользователя" Grid.Column="0" Grid.Row="5" Margin="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Количество тренировок в неделю" Grid.Column="0" Grid.Row="6" Margin="1" HorizontalContentAlignment="Right"/>
         <TextBox Grid.Column="1" Grid.Row="0" BorderThickness="2"/>
         <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" >
             <Grid.ColumnDefinitions>
