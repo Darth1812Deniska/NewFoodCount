@@ -78,6 +78,11 @@ namespace NewFoodCount
 
         internal System.Windows.Controls.Grid grdUser;
         internal System.Windows.Controls.ComboBox cmbUser;
+        internal System.Windows.Controls.Grid grdUserInfo;
+        internal System.Windows.Controls.TextBlock tbCarbons;
+        internal System.Windows.Controls.TextBlock tbProts;
+        internal System.Windows.Controls.TextBlock tbFats;
+        internal System.Windows.Controls.TextBlock tbCalorific;
     }
 }
 

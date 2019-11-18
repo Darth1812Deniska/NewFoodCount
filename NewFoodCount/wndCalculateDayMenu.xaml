@@ -24,6 +24,27 @@
                 <Label Grid.Row="0">Пользователь</Label>
                 <ComboBox Name="cmbUser" Grid.Row="1"/>
             </Grid>
+            <Grid x:Name="grdUserInfo" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0">Углеводы:</Label>
+                <Label Grid.Column="1" Grid.Row="0">Белки:</Label>
+                <Label Grid.Column="2" Grid.Row="0">Жиры:</Label>
+                <Label Grid.Column="3" Grid.Row="0">Дневная калорийность:</Label>
+                <TextBlock x:Name="tbCarbons" Grid.Column="0" Grid.Row="1">0.0</TextBlock>
+                <TextBlock x:Name="tbProts" Grid.Column="1" Grid.Row="1">0.0</TextBlock>
+                <TextBlock x:Name="tbFats" Grid.Column="2" Grid.Row="1">0.0</TextBlock>
+                <TextBlock x:Name="tbCalorific" Grid.Column="3" Grid.Row="1">0.0</TextBlock>
+
+            </Grid>
         </Grid>
         
     </Grid>
