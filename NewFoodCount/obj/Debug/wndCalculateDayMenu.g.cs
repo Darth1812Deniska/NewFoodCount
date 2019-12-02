@@ -83,6 +83,12 @@ namespace NewFoodCount
         internal System.Windows.Controls.TextBlock tbProts;
         internal System.Windows.Controls.TextBlock tbFats;
         internal System.Windows.Controls.TextBlock tbCalorific;
+        internal System.Windows.Controls.ListBox lbCarbons;
+        internal System.Windows.Controls.ListBox lbProts;
+        internal System.Windows.Controls.ListBox lbFats;
+        internal System.Windows.Controls.Button btnAddCarbon;
+        internal System.Windows.Controls.Button btnAddProt;
+        internal System.Windows.Controls.Button btnAddFat;
     }
 }
 
