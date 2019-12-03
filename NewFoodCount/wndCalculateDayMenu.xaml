@@ -1,4 +1,4 @@
-﻿<Window x:Class="NewFoodCount.wndCalculateDayMenu"
+﻿<Window xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  x:Class="NewFoodCount.wndCalculateDayMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,7 +11,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -52,7 +52,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" Margin="5,0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -62,25 +62,82 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Grid.Row="0">
-                    <Label>Углеводы</Label>
-                    <ListBox Name="lbCarbons"/>
-                </StackPanel>
-                <StackPanel Grid.Column="0" Grid.Row="1">
-                    <Label>Белки</Label>
-                    <ListBox Name="lbProts"/>
-                </StackPanel>
-                <StackPanel Grid.Column="0" Grid.Row="2">
-                    <Label>Жиры</Label>
-                    <ListBox Name="lbFats"/>
-                </StackPanel>
+                <Grid Grid.Column="0" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0">Углеводы</Label>
+                    <ListBox Grid.Row="1" Name="lbCarbons"/>
+
+                </Grid>
+                <Grid Grid.Column="0" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0">Белки</Label>
+                    <ListBox Grid.Row="1" Name="lbProts"/>
+                    
+                </Grid>
+                <Grid Grid.Column="0" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0">Жиры</Label>
+                    <ListBox Grid.Row="1" Name="lbFats"/>
+
+                </Grid>
                 <Button Content="->" x:Name="btnAddCarbon" Grid.Column="1" Grid.Row="0" Width="25" Height="25" />
                 <Button Content="->" x:Name="btnAddProt" Grid.Column="1" Grid.Row="1" Width="25" Height="25"/>
                 <Button Content="->" x:Name="btnAddFat" Grid.Column="1" Grid.Row="2" Width="25" Height="25"/>
 
             </Grid>
-            <Grid Grid.Column="1">
-                
+            <Grid Grid.Column="1" Margin="5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Grid.Column="0" Name="lbFoodList"/>
+                    <Button Name="btnDeleteFood" Content="Удалить" Grid.Column="1" Width="50" Height="20" Margin="5,0"/>
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0">Название:</Label>
+                    <Label Grid.Column="0" Grid.Row="1">Масса:</Label>
+                    <Label Grid.Column="0" Grid.Row="2">Углеводы:</Label>
+                    <Label Grid.Column="0" Grid.Row="3">Белки:</Label>
+                    <Label Grid.Column="0" Grid.Row="4">Жиры:</Label>
+                    <Label Grid.Column="0" Grid.Row="5">Калории:</Label>
+                    <Label Grid.Column="0" Grid.Row="6">Маркер</Label>
+                    <TextBlock Name="tbFoodName" Grid.Column="1" Grid.Row="0"/>
+                    <xctk:IntegerUpDown Name="intFoodMass" Grid.Column="1" Grid.Row="1"/>
+                    <xctk:IntegerUpDown Name="intFoodCarbon" Grid.Column="1" Grid.Row="2"/>
+                    <xctk:IntegerUpDown Name="intFoodProt" Grid.Column="1" Grid.Row="3"/>
+                    <xctk:IntegerUpDown Name="intFoodFat" Grid.Column="1" Grid.Row="4"/>
+                    <TextBlock Name="tbFoodCal" Grid.Column="1" Grid.Row="5"/>
+                    <Rectangle Name="rFoodColor" Grid.Column="1" Grid.Row="6"/>
+                </Grid>
+
             </Grid>
             <Grid Grid.Column="2">
                 

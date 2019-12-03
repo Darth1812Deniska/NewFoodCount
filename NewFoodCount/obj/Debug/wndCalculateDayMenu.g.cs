@@ -89,6 +89,15 @@ namespace NewFoodCount
         internal System.Windows.Controls.Button btnAddCarbon;
         internal System.Windows.Controls.Button btnAddProt;
         internal System.Windows.Controls.Button btnAddFat;
+        internal System.Windows.Controls.ListBox lbFoodList;
+        internal System.Windows.Controls.Button btnDeleteFood;
+        internal System.Windows.Controls.TextBlock tbFoodName;
+        internal Xceed.Wpf.Toolkit.IntegerUpDown intFoodMass;
+        internal Xceed.Wpf.Toolkit.IntegerUpDown intFoodCarbon;
+        internal Xceed.Wpf.Toolkit.IntegerUpDown intFoodProt;
+        internal Xceed.Wpf.Toolkit.IntegerUpDown intFoodFat;
+        internal System.Windows.Controls.TextBlock tbFoodCal;
+        internal System.Windows.Shapes.Rectangle rFoodColor;
     }
 }
 
