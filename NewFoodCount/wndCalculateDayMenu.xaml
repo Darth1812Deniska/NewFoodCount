@@ -129,18 +129,84 @@
                     <Label Grid.Column="0" Grid.Row="4">Жиры:</Label>
                     <Label Grid.Column="0" Grid.Row="5">Калории:</Label>
                     <Label Grid.Column="0" Grid.Row="6">Маркер</Label>
-                    <TextBlock Name="tbFoodName" Grid.Column="1" Grid.Row="0"/>
+                    <TextBlock Name="tbFoodName" Grid.Column="1" Grid.Row="0" />
                     <xctk:IntegerUpDown Name="intFoodMass" Grid.Column="1" Grid.Row="1"/>
                     <xctk:IntegerUpDown Name="intFoodCarbon" Grid.Column="1" Grid.Row="2"/>
                     <xctk:IntegerUpDown Name="intFoodProt" Grid.Column="1" Grid.Row="3"/>
                     <xctk:IntegerUpDown Name="intFoodFat" Grid.Column="1" Grid.Row="4"/>
                     <TextBlock Name="tbFoodCal" Grid.Column="1" Grid.Row="5"/>
-                    <Rectangle Name="rFoodColor" Grid.Column="1" Grid.Row="6"/>
+                    <Rectangle Name="rFoodColor" Grid.Column="1" Grid.Row="6" Stroke="Black"/>
                 </Grid>
 
             </Grid>
-            <Grid Grid.Column="2">
-                
+            <Grid Grid.Column="2" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Общая калорийность</Label>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="recСalorific" Grid.Column="0" Stroke="Black"/>
+                        <TextBlock Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Углеводы</Label>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="recCarbons" Grid.Column="0" Stroke="Black"/>
+                        <TextBlock Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Белки</Label>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="recProts" Grid.Column="0" Stroke="Black"/>
+                        <TextBlock Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Жиры</Label>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="recFats" Grid.Column="0" Stroke="Black"/>
+                        <TextBlock Grid.Column="1" />
+                    </Grid>
+                </Grid>
+
             </Grid>
         </Grid>
         

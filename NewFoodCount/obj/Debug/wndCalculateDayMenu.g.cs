@@ -98,6 +98,10 @@ namespace NewFoodCount
         internal Xceed.Wpf.Toolkit.IntegerUpDown intFoodFat;
         internal System.Windows.Controls.TextBlock tbFoodCal;
         internal System.Windows.Shapes.Rectangle rFoodColor;
+        internal System.Windows.Shapes.Rectangle recСalorific;
+        internal System.Windows.Shapes.Rectangle recCarbons;
+        internal System.Windows.Shapes.Rectangle recProts;
+        internal System.Windows.Shapes.Rectangle recFats;
     }
 }
 
