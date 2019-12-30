@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="User.cs" />
     <Compile Include="wndAddFinishedProduct.xaml.cs">
       <DependentUpon>wndAddFinishedProduct.xaml</DependentUpon>
     </Compile>
