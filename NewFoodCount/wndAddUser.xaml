@@ -29,27 +29,27 @@
         <Label Content="Вес" Grid.Column="0" Grid.Row="4" Margin="1" HorizontalContentAlignment="Right"/>
         <Label Content="Цель пользователя" Grid.Column="0" Grid.Row="5" Margin="1" HorizontalContentAlignment="Right"/>
         <Label Content="Количество тренировок в неделю" Grid.Column="0" Grid.Row="6" Margin="1" HorizontalContentAlignment="Right"/>
-        <TextBox Grid.Column="1" Grid.Row="0" BorderThickness="2"/>
+        <TextBox x:Name="txtName" Grid.Column="1" Grid.Row="0" BorderThickness="2"/>
         <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <RadioButton Grid.Column="0" Content="Мужской" GroupName="Gender" Margin="1"/>
-            <RadioButton Grid.Column="1" Content="Женский" GroupName="Gender" Margin="1"/>
+            <RadioButton x:Name="rbMale" Grid.Column="0" Content="Мужской" GroupName="Gender" Margin="1" IsChecked="True"/>
+            <RadioButton x:Name="rbFemale" Grid.Column="1" Content="Женский" GroupName="Gender" Margin="1"/>
         </Grid>
-        <Calendar Grid.Column="1" Grid.Row="2" Margin="1"/>
-        <xctk:DoubleUpDown Grid.Column="1" Grid.Row="3" Margin="1"/>
-        <xctk:DoubleUpDown Grid.Column="1" Grid.Row="4" Margin="1"/>
-        <ComboBox Grid.Row="5" Grid.Column="1" Margin="1" />
-        <ComboBox Grid.Row="6" Grid.Column="1" Margin="1" />
+        <Calendar x:Name="calBirthDay" Grid.Column="1" Grid.Row="2" Margin="1"/>
+        <xctk:IntegerUpDown x:Name="udHeight" Grid.Column="1" Grid.Row="3" Margin="1"/>
+        <xctk:DoubleUpDown x:Name="udWeight" Grid.Column="1" Grid.Row="4" Margin="1"/>
+        <ComboBox x:Name="cmbPurpose" Grid.Row="5" Grid.Column="1" Margin="1" />
+        <ComboBox x:Name="cmbTrainingNumber" Grid.Row="6" Grid.Column="1" Margin="1" />
         <Grid  Grid.Row="7" Grid.Column="1" Margin="0,5,0,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Сохранить"  />
-            <Button Grid.Column="1" Content="Отменить"  />
+            <Button x:Name="btnSave" Grid.Column="0" Content="Сохранить" Click="btnSave_Click"   />
+            <Button x:Name="btnCancel" Grid.Column="1" Content="Отменить"  />
         </Grid>
         
     </Grid>

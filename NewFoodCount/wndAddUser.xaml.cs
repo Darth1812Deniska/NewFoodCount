@@ -23,5 +23,10 @@ namespace NewFoodCount
         {
             InitializeComponent();
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //User user = new User(txtName.Text, )
+        }
     }
 }

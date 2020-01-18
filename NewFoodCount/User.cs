@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +44,7 @@ namespace NewFoodCount
         public double FatRate { get => GetFatRate(); }
         public double MinCalorificLimit { get => GetMinCalorificLimit(); }
         public double MaxCalorificLimit { get => GetMaxCalorificLimit(); }
-        public double UserDayCalorific { get; }
+        public double UserDayCalorific { get => GetUserDayCalorific(); }
 
         private int GetAge()
         {
@@ -161,9 +162,29 @@ namespace NewFoodCount
             return result;
         }
 
+        private double GetUserDayCalorific()
+        {
+            double result = 3.8 * ProteinRate + 4.1 * CarbohydratesRate + 9.3 * FatRate;
+            return result;
+        }
+
         public User()
         {
 
+        }
+
+        public User (
+            string name, Gender gender, DateTime birthDate, int height,
+            double weight, UserPurpose userPurpose, int trainingNumber
+            )
+        {
+            Name = name;
+            Gender = gender;
+            BirthDate = birthDate;
+            Height = height;
+            Weight = weight;
+            UserPurpose = userPurpose;
+            TrainingNumber = trainingNumber;
         }
     }
 }
