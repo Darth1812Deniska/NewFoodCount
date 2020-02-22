@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewFoodCount"
         mc:Ignorable="d"
-        Title="Главное" Height="200" Width="500">
+        Title="Главное" Height="200" Width="500" WindowStartupLocation="CenterScreen" Closing="wndMain_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,9 +15,9 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Name="btnAddUser" Margin="10">Добавить пользователя</Button>
-        <Button Grid.Column="1" Name="btnAddProduct" Margin="10">Добавить продукт</Button>
-        <Button Grid.Column="2" Name="btnCalculate" Margin="10">Рассчитать меню</Button>
+        <Button Grid.Column="0" Name="btnAddUser" Margin="10" Click="btnAddUser_Click">Добавить пользователя</Button>
+        <Button Grid.Column="1" Name="btnAddProduct" Margin="10" Click="btnAddProduct_Click">Добавить продукт</Button>
+        <Button Grid.Column="2" Name="btnCalculate" Margin="10" Click="btnCalculate_Click">Рассчитать меню</Button>
 
 
 
