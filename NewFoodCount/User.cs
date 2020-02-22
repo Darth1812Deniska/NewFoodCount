@@ -1,9 +1,12 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace NewFoodCount
 {
@@ -20,6 +23,7 @@ namespace NewFoodCount
         WeightGain
     }
 
+    [Serializable]
     public class User
     {
         private int height = 0;
@@ -164,8 +168,29 @@ namespace NewFoodCount
 
         private double GetUserDayCalorific()
         {
-            double result = 3.8 * ProteinRate + 4.1 * CarbohydratesRate + 9.3 * FatRate;
-            return result;
+            return (3.8 * ProteinRate) + (4.1 * CarbohydratesRate) + (9.3 * FatRate);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is User user &&
+                   Name == user.Name &&
+                   Gender == user.Gender &&
+                   BirthDate == user.BirthDate;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1577353200;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
+            hashCode = hashCode * -1521134295 + Gender.GetHashCode();
+            hashCode = hashCode * -1521134295 + BirthDate.GetHashCode();
+            return hashCode;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
         public User()
@@ -185,6 +210,40 @@ namespace NewFoodCount
             Weight = weight;
             UserPurpose = userPurpose;
             TrainingNumber = trainingNumber;
+        }
+    }
+
+    public static class AllUsers
+    {
+        private static List<User> users;
+
+        public static List<User> Users => users;
+
+        public static void LoadUsers() 
+        {
+            if (File.Exists("users.xml"))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<User>));
+                using (FileStream fs = new FileStream("users.xml", FileMode.OpenOrCreate))
+                using (XmlReader reader = XmlReader.Create(fs))
+                {
+                    List<User> list = (List<User>)serializer.Deserialize(reader);
+                    users = list;
+                }
+            }
+            else
+            {
+                users = new List<User>();
+            }
+        }
+
+        public static void SaveUsers() 
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<User>));
+            using (FileStream fs = new FileStream("users.xml", FileMode.OpenOrCreate))
+            {
+                serializer.Serialize(fs, users);
+            }
         }
     }
 }

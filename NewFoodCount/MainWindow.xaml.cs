@@ -23,6 +23,28 @@ namespace NewFoodCount
         public MainWindow()
         {
             InitializeComponent();
+            AllUsers.LoadUsers();
+        }
+
+        private void btnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            AddUserWindow addUser = new AddUserWindow();
+            addUser.ShowDialog();
+        }
+
+        private void wndMain_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            AllUsers.SaveUsers();
+        }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCalculate_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
