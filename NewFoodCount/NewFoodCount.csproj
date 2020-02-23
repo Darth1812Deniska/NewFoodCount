@@ -78,6 +78,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Product.cs" />
+    <Compile Include="ProductSegmentControl.xaml.cs">
+      <DependentUpon>ProductSegmentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="AddProductWindow.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
@@ -109,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CalculateDayMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductSegmentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
