@@ -24,6 +24,7 @@ namespace NewFoodCount
         {
             InitializeComponent();
             AllUsers.LoadUsers();
+            AllProducts.Load();
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -35,11 +36,13 @@ namespace NewFoodCount
         private void wndMain_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             AllUsers.SaveUsers();
+            AllProducts.Save();
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            AddProductWindow addProduct = new AddProductWindow();
+            addProduct.ShowDialog();
         }
 
         private void btnCalculate_Click(object sender, RoutedEventArgs e)

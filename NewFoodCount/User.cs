@@ -213,33 +213,45 @@ namespace NewFoodCount
         }
     }
 
+    public class UserCollection: List<User>
+    {
+        public new void Add(User user)
+        {
+            if (this.Contains(user))
+            {
+                this.Remove(user);
+            }
+            base.Add(user);
+        }
+    }
+
     public static class AllUsers
     {
-        private static List<User> users;
+        private static UserCollection users;
 
-        public static List<User> Users => users;
+        public static UserCollection Users => users;
 
         public static void LoadUsers() 
         {
             if (File.Exists("users.xml"))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<User>));
+                XmlSerializer serializer = new XmlSerializer(typeof(UserCollection));
                 using (FileStream fs = new FileStream("users.xml", FileMode.OpenOrCreate))
                 using (XmlReader reader = XmlReader.Create(fs))
                 {
-                    List<User> list = (List<User>)serializer.Deserialize(reader);
+                    UserCollection list = (UserCollection)serializer.Deserialize(reader);
                     users = list;
                 }
             }
             else
             {
-                users = new List<User>();
+                users = new UserCollection();
             }
         }
 
         public static void SaveUsers() 
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<User>));
+            XmlSerializer serializer = new XmlSerializer(typeof(UserCollection));
             using (FileStream fs = new FileStream("users.xml", FileMode.OpenOrCreate))
             {
                 serializer.Serialize(fs, users);

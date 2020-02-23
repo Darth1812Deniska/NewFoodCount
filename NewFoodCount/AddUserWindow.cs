@@ -48,7 +48,6 @@ namespace NewFoodCount
             User user = new User(txtName.Text, UserGender, calBirthDay.SelectedDate.Value,
                 (int)udHeight.Value, (double)udWeight.Value, (UserPurpose)cmbPurpose.SelectedItem, TrainingCount);
             AllUsers.Users.Add(user);
-            AllUsers.SaveUsers();
             Close();
         }
 
