@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace NewFoodCount
 {
@@ -54,4 +57,42 @@ namespace NewFoodCount
             return Name;
         }
     }
+
+    public class ProductCollection: List<Product>
+    {
+
+    }
+
+    public static class AllProducts
+    {
+        private static  ProductCollection products;
+
+        public static ProductCollection Products => products;
+        public static void Save()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(ProductCollection));
+            using (FileStream fs = new FileStream("products.xml", FileMode.OpenOrCreate))
+            {
+                serializer.Serialize(fs, products);
+            }
+        }
+        public static void Load()
+        {
+            if (File.Exists("products.xml"))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ProductCollection));
+                using (FileStream fs = new FileStream("products.xml", FileMode.OpenOrCreate))
+                using (XmlReader reader = XmlReader.Create(fs))
+                {
+                    ProductCollection list = (ProductCollection)serializer.Deserialize(reader);
+                    products = list;
+                }
+            }
+            else
+            {
+                products = new ProductCollection();
+            }
+        }
+    }
+
 }

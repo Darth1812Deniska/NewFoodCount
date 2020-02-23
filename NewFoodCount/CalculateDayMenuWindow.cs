@@ -17,9 +17,9 @@ namespace NewFoodCount
     /// <summary>
     /// Логика взаимодействия для wndCalculateDayMenu.xaml
     /// </summary>
-    public partial class wndCalculateDayMenu : Window
+    public partial class CalculateDayMenuWindow : Window
     {
-        public wndCalculateDayMenu()
+        public CalculateDayMenuWindow()
         {
             InitializeComponent();
         }

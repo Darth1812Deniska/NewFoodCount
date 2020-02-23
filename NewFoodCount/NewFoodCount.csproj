@@ -85,8 +85,8 @@
     <Compile Include="AddUserWindow.cs">
       <DependentUpon>AddUserWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="wndCalculateDayMenu.xaml.cs">
-      <DependentUpon>wndCalculateDayMenu.xaml</DependentUpon>
+    <Compile Include="CalculateDayMenuWindow.cs">
+      <DependentUpon>CalculateDayMenuWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -108,7 +108,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="wndCalculateDayMenu.xaml">
+    <Page Include="CalculateDayMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
