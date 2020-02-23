@@ -47,7 +47,8 @@ namespace NewFoodCount
 
         private void btnCalculate_Click(object sender, RoutedEventArgs e)
         {
-
+            CalculateDayMenuWindow window = new CalculateDayMenuWindow();
+            window.ShowDialog();
         }
     }
 }
