@@ -93,6 +93,21 @@ namespace NewFoodCount
                 products = new ProductCollection();
             }
         }
+
+        public static List<Product> GetProteinProducts()
+        {
+            return Products.OrderByDescending(x => x.Protein).ToList();
+        }
+
+        public static List<Product> GetCarbohydrateProducts()
+        {
+            return Products.OrderByDescending(x => x.Carbohydrate).ToList();
+        }
+
+        public static List<Product> GetFatProducts()
+        {
+            return Products.OrderByDescending(x => x.Fat).ToList();
+        }
     }
 
 }

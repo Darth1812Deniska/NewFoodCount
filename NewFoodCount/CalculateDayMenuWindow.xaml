@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewFoodCount"
         mc:Ignorable="d"
-        Title="wndCalculateDayMenu" Height="450" Width="800">
+        Title="wndCalculateDayMenu" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,7 +22,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0">Пользователь</Label>
-                <ComboBox Name="cmbUser" Grid.Row="1"/>
+                <ComboBox Name="cmbUser" Grid.Row="1" SelectionChanged="cmbUser_SelectionChanged"/>
             </Grid>
             <Grid x:Name="grdUserInfo" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -43,9 +43,9 @@
                 <TextBlock x:Name="tbCarbons" Grid.Column="0" Grid.Row="1">0.0</TextBlock>
                 <TextBlock x:Name="tbProts" Grid.Column="1" Grid.Row="1">0.0</TextBlock>
                 <TextBlock x:Name="tbFats" Grid.Column="2" Grid.Row="1">0.0</TextBlock>
-                <TextBlock x:Name="tbCalorific" Grid.Column="3" Grid.Row="1">0.0</TextBlock>
-                <Slider x:Name="slProts" Grid.Column="1" Grid.Row="2" Minimum="1" Maximum="2"/>
-                <TextBlock x:Name="tbProtperWeight" Grid.Column="2" Grid.Row="2"/>
+                <TextBlock x:Name="tbCalorific" Grid.Column="3" Grid.Row="1" >0.0</TextBlock>
+                <Slider x:Name="slProts" Grid.Column="1" Grid.Row="2" Minimum="1" Maximum="2" ValueChanged="slProts_ValueChanged" SmallChange="0.01"/>
+                <TextBox x:Name="textProtPerWeight" Grid.Row="2" Grid.Column="2">1</TextBox>
 
             </Grid>
         </Grid>
@@ -92,9 +92,9 @@
                     <ListBox Grid.Row="1" Name="lbFats"/>
 
                 </Grid>
-                <Button Content="->" x:Name="btnAddCarbon" Grid.Column="1" Grid.Row="0" Width="25" Height="25" />
-                <Button Content="->" x:Name="btnAddProt" Grid.Column="1" Grid.Row="1" Width="25" Height="25"/>
-                <Button Content="->" x:Name="btnAddFat" Grid.Column="1" Grid.Row="2" Width="25" Height="25"/>
+                <Button Content="->" x:Name="btnAddCarbon" Grid.Column="1" Grid.Row="0" Width="25" Height="25" Click="btnAddCarbon_Click"  />
+                <Button Content="->" x:Name="btnAddProt" Grid.Column="1" Grid.Row="1" Width="25" Height="25" Click="btnAddProt_Click"/>
+                <Button Content="->" x:Name="btnAddFat" Grid.Column="1" Grid.Row="2" Width="25" Height="25" Click="btnAddFat_Click"/>
 
             </Grid>
             <Grid Grid.Column="1" Margin="5,0">
