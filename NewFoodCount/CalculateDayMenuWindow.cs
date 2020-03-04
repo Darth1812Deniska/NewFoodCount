@@ -61,7 +61,7 @@ namespace NewFoodCount
 
         private void btnAddProt_Click(object sender, RoutedEventArgs e)
         {
-            Product selProduct = lbCarbons.SelectedItem as Product;
+            Product selProduct = lbProts.SelectedItem as Product;
             if (selProduct != null)
             {
                 DayDishes.AddProteinProduct(selProduct);
@@ -72,7 +72,7 @@ namespace NewFoodCount
 
         private void btnAddFat_Click(object sender, RoutedEventArgs e)
         {
-            Product selProduct = lbCarbons.SelectedItem as Product;
+            Product selProduct = lbFats.SelectedItem as Product;
             if (selProduct != null)
             {
                 DayDishes.AddFatProduct(selProduct);
@@ -95,6 +95,10 @@ namespace NewFoodCount
         private void cmbUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             slProts.Value = CurrentUser.ProteinRatePerWeight;
+            DayDishes.MaxProtein = ProteinRate;
+            DayDishes.MaxCarbohydrate = CarbohydratesRate;
+            DayDishes.MaxFat = FatRate;
+            DayDishes.MaxCalorific = UserDayCalorific;
             tbCarbons.Text = CarbohydratesRate.ToString("F");
             tbProts.Text = ProteinRate.ToString("F");
             tbFats.Text = FatRate.ToString("F");
@@ -107,6 +111,10 @@ namespace NewFoodCount
                 double proteinRatePerWeight = ((Slider)sender).Value;
                 CurrentUser.ProteinRatePerWeight = proteinRatePerWeight;
                 textProtPerWeight.Text = proteinRatePerWeight.ToString("F");
+                DayDishes.MaxProtein = ProteinRate;
+                DayDishes.MaxCarbohydrate = CarbohydratesRate;
+                DayDishes.MaxFat = FatRate;
+                DayDishes.MaxCalorific = UserDayCalorific;
                 tbCarbons.Text = CarbohydratesRate.ToString("F");
                 tbProts.Text = ProteinRate.ToString("F");
                 tbFats.Text = FatRate.ToString("F");
@@ -124,6 +132,24 @@ namespace NewFoodCount
                     tbCalorific.Foreground = Brushes.Red;
                 }
             }
+        }
+
+        private void lbFoodList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Dish dish = ((ListBox)sender).SelectedItem as Dish;
+            double weight = dish.Weight;
+            double calorific = dish.Calorific;
+            double carbohydrate = dish.Carbohydrate;
+            double protein = dish.Protein;
+            double fat = dish.Fat;
+            string productName = dish.Product.Name;
+
+            intFoodMass.Value = weight;
+            intFoodCarbon.Value = carbohydrate;
+            intFoodProt.Value = protein;
+            intFoodFat.Value = fat;
+            tbFoodCal.Text = calorific.ToString("F");
+            tbFoodName.Text = productName;
         }
     }
 }

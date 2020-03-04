@@ -107,7 +107,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox Grid.Column="0" Name="lbFoodList"/>
+                    <ListBox Grid.Column="0" Name="lbFoodList" SelectionChanged="lbFoodList_SelectionChanged"/>
                     <Button Name="btnDeleteFood" Content="Удалить" Grid.Column="1" Width="50" Height="20" Margin="5,0"/>
 
                 </Grid>
