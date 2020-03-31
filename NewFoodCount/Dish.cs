@@ -94,8 +94,7 @@ namespace NewFoodCount
         private double CurrentFatRemains { get => GetCurrentFatRemains(); }
         public void AddProteinProduct(Product product)
         {
-            int productCount = this.Count;
-            if (productCount >= 0)
+            if (!this.Exists(x => x.Product == product))
             {
                 double addingWeight = GetProteinAddingWeight();
                 Dish dish = new Dish(product)
@@ -104,12 +103,13 @@ namespace NewFoodCount
                 };
                 MassRecalculationAddingProtein(addingWeight);
                 this.Add(dish);
+
             }
         }
+
         public void AddCarbohydrateProduct(Product product)
         {
-            int productCount = this.Count;
-            if (productCount >= 0)
+            if (!this.Exists(x => x.Product == product))
             {
                 double addingWeight = GetCarbohydrateAddingWeight();
                 Dish dish = new Dish(product)
@@ -120,10 +120,10 @@ namespace NewFoodCount
                 this.Add(dish);
             }
         }
+
         public void AddFatProduct(Product product)
         {
-            int productCount = this.Count;
-            if (productCount >= 0)
+            if (!this.Exists(x => x.Product == product))
             {
                 double addingWeight = GetFatAddingWeight();
                 Dish dish = new Dish(product)
@@ -141,7 +141,7 @@ namespace NewFoodCount
             Dictionary<Product, double> productProportions = new Dictionary<Product, double>();
             foreach (Dish dish in this)
             {
-                productProportions.Add(dish.Product, dish.Protein / MaxProtein);
+                productProportions.Add(dish.Product, dish.Protein / CurrentProteinMass);
             }
             double prevDishWeight = MaxProtein - addingWeight;
          
@@ -156,7 +156,7 @@ namespace NewFoodCount
             Dictionary<Product, double> productProportions = new Dictionary<Product, double>();
             foreach (Dish dish in this)
             {
-                productProportions.Add(dish.Product, dish.Carbohydrate / MaxCarbohydrate);
+                productProportions.Add(dish.Product, dish.Carbohydrate / CurrentCarbohydrateMass);
             }
             double prevDishWeight = MaxCarbohydrate - addingWeight;
             for (int i = 0; i < this.Count; i++)
@@ -170,7 +170,7 @@ namespace NewFoodCount
             Dictionary<Product, double> productProportions = new Dictionary<Product, double>();
             foreach (Dish dish in this)
             {
-                productProportions.Add(dish.Product, dish.Fat / MaxFat);
+                productProportions.Add(dish.Product, dish.Fat / CurrentFatMass);
             }
             double prevDishWeight = MaxFat - addingWeight;
             for (int i = 0; i < this.Count; i++)
@@ -183,7 +183,7 @@ namespace NewFoodCount
             double result = 0;
             foreach (Dish dish in this)
             {
-                result = +dish.Protein;
+                result += dish.Protein;
             }
             return result;
         }
@@ -192,7 +192,7 @@ namespace NewFoodCount
             double result = 0;
             foreach (Dish dish in this)
             {
-                result = +dish.Carbohydrate;
+                result += dish.Carbohydrate;
             }
             return result;
         }
@@ -201,7 +201,7 @@ namespace NewFoodCount
             double result = 0;
             foreach (Dish dish in this)
             {
-                result = +dish.Fat;
+                result += dish.Fat;
             }
             return result;
         }

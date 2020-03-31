@@ -57,6 +57,7 @@ namespace NewFoodCount
             }
             dishesList = new ObservableCollection<Dish>(DayDishes);
             lbFoodList.ItemsSource = DishesList;
+            lbFoodList.SelectedIndex = lbFoodList.Items.Count - 1;
         }
 
         private void btnAddProt_Click(object sender, RoutedEventArgs e)
@@ -68,6 +69,7 @@ namespace NewFoodCount
             }
             dishesList = new ObservableCollection<Dish>(DayDishes);
             lbFoodList.ItemsSource = DishesList;
+            lbFoodList.SelectedIndex = lbFoodList.Items.Count - 1;
         }
 
         private void btnAddFat_Click(object sender, RoutedEventArgs e)
@@ -79,6 +81,7 @@ namespace NewFoodCount
             }
             dishesList = new ObservableCollection<Dish>(DayDishes);
             lbFoodList.ItemsSource = DishesList;
+            lbFoodList.SelectedIndex = lbFoodList.Items.Count - 1;
         }
 
         private User GetCurrenUser()
