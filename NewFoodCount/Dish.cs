@@ -3,32 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Drawing;
 
 namespace NewFoodCount
 {
     public class Dish
     {
         private readonly Product _product;
+        private readonly Brush color;
         private double weight;
 
         public Product Product => _product;
         public double Weight { get => weight; set => weight = value; }
         public double Protein { get => GetProtein(); set => SetProtein(value); }
-        public double Carbohydrate { get => GetCarbohydrate(); set =>SetCarbohydrate(value); }
+        public double Carbohydrate { get => GetCarbohydrate(); set => SetCarbohydrate(value); }
         public double Fat { get => GetFat(); set => SetFat(value); }
         public double Calorific { get => GetCalorific(); set => SetCalorific(value); }
+        public Brush DishColor => color;
+        
+
         public Dish()
         {
-
+            Random r = new Random();
+            color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+              (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
+
         public Dish(Product product)
         {
             this._product = product;
+            Random r = new Random();
+            color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+              (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
         public Dish(Product product, double weight)
         {
             _product = product;
             Weight = weight;
+            Random r = new Random();
+            color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+              (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
         private double GetProtein()
         {

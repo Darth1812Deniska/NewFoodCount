@@ -21,14 +21,18 @@ namespace NewFoodCount
     public partial class CalculateDayMenuWindow : Window
     {
         private DishCollection dayDishes;
-        private  ObservableCollection<Dish> dishesList;
+        private ObservableCollection<Dish> dishesList;
+        private readonly ProductSegmentControl calorificSegmentControl;
+        private readonly ProductSegmentControl carbohydrateSegmentControl;
+        private readonly ProductSegmentControl proteinSegmentControl;
+        private readonly ProductSegmentControl fatSegmentControl;
 
         private List<Product> CarbohydrateProducts => AllProducts.GetCarbohydrateProducts();
         private List<Product> ProteinProducts => AllProducts.GetProteinProducts();
         private List<Product> FatProducts => AllProducts.GetFatProducts();
         private List<User> Users => AllUsers.Users;
         private DishCollection DayDishes { get => dayDishes; set => dayDishes = value; }
-        private ObservableCollection<Dish> DishesList => dishesList; 
+        private ObservableCollection<Dish> DishesList => dishesList;
         private User CurrentUser { get => GetCurrenUser(); }
         private double CarbohydratesRate { get => CurrentUser.CarbohydratesRate; }
         private double ProteinRate { get => CurrentUser.ProteinRate; }
@@ -36,6 +40,10 @@ namespace NewFoodCount
         private double UserDayCalorific { get => CurrentUser.UserDayCalorific; }
         private double MinCalorificLimit { get => CurrentUser.MinCalorificLimit; }
         private double MaxCalorificLimit { get => CurrentUser.MaxCalorificLimit; }
+        private ProductSegmentControl CalorificSegmentControl => calorificSegmentControl;
+        private ProductSegmentControl CarbohydrateSegmentControl => carbohydrateSegmentControl;
+        private ProductSegmentControl ProteinSegmentControl => proteinSegmentControl;
+        private ProductSegmentControl FatSegmentControl => fatSegmentControl; 
         public CalculateDayMenuWindow()
         {
             InitializeComponent();
@@ -46,6 +54,15 @@ namespace NewFoodCount
             cmbUser.ItemsSource = Users;
             lbFoodList.ItemsSource = DishesList;
             slProts.Value = 1;
+            calorificSegmentControl = new ProductSegmentControl(NutrientType.Calorific, 0);
+            recCalorific.Children.Add(CalorificSegmentControl);
+            carbohydrateSegmentControl = new ProductSegmentControl(NutrientType.Carbohydrate, 0);
+            recCarbons.Children.Add(CarbohydrateSegmentControl);
+            proteinSegmentControl = new ProductSegmentControl(NutrientType.Protein, 0);
+            recProts.Children.Add(ProteinSegmentControl);
+            fatSegmentControl = new ProductSegmentControl(NutrientType.Fat, 0);
+            recFats.Children.Add(FatSegmentControl);
+
         }
 
         private void btnAddCarbon_Click(object sender, RoutedEventArgs e)
@@ -55,6 +72,7 @@ namespace NewFoodCount
             {
                 DayDishes.AddCarbohydrateProduct(selProduct);
             }
+            UpdateAllSegmentControls();
             dishesList = new ObservableCollection<Dish>(DayDishes);
             lbFoodList.ItemsSource = DishesList;
             lbFoodList.SelectedIndex = lbFoodList.Items.Count - 1;
@@ -67,6 +85,7 @@ namespace NewFoodCount
             {
                 DayDishes.AddProteinProduct(selProduct);
             }
+            UpdateAllSegmentControls();
             dishesList = new ObservableCollection<Dish>(DayDishes);
             lbFoodList.ItemsSource = DishesList;
             lbFoodList.SelectedIndex = lbFoodList.Items.Count - 1;
@@ -79,6 +98,7 @@ namespace NewFoodCount
             {
                 DayDishes.AddFatProduct(selProduct);
             }
+            UpdateAllSegmentControls();
             dishesList = new ObservableCollection<Dish>(DayDishes);
             lbFoodList.ItemsSource = DishesList;
             lbFoodList.SelectedIndex = lbFoodList.Items.Count - 1;
@@ -105,11 +125,15 @@ namespace NewFoodCount
             tbCarbons.Text = CarbohydratesRate.ToString("F");
             tbProts.Text = ProteinRate.ToString("F");
             tbFats.Text = FatRate.ToString("F");
+            CalorificSegmentControl.MaxDimension = UserDayCalorific;
+            CarbohydrateSegmentControl.MaxDimension = CarbohydratesRate;
+            ProteinSegmentControl.MaxDimension = ProteinRate;
+            FatSegmentControl.MaxDimension = FatRate;
         }
 
         private void slProts_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (((Slider)sender).Value >=1 && textProtPerWeight!=null)
+            if (((Slider)sender).Value >= 1 && textProtPerWeight != null)
             {
                 double proteinRatePerWeight = ((Slider)sender).Value;
                 CurrentUser.ProteinRatePerWeight = proteinRatePerWeight;
@@ -122,15 +146,15 @@ namespace NewFoodCount
                 tbProts.Text = ProteinRate.ToString("F");
                 tbFats.Text = FatRate.ToString("F");
                 tbCalorific.Text = UserDayCalorific.ToString("F");
-                if (UserDayCalorific<MinCalorificLimit)
+                if (UserDayCalorific < MinCalorificLimit)
                 {
                     tbCalorific.Foreground = Brushes.Green;
                 }
-                else if ((MinCalorificLimit <= UserDayCalorific) && (UserDayCalorific <=MaxCalorificLimit))
+                else if ((MinCalorificLimit <= UserDayCalorific) && (UserDayCalorific <= MaxCalorificLimit))
                 {
                     tbCalorific.Foreground = Brushes.Black;
                 }
-                else if (UserDayCalorific>MaxCalorificLimit)
+                else if (UserDayCalorific > MaxCalorificLimit)
                 {
                     tbCalorific.Foreground = Brushes.Red;
                 }
@@ -153,6 +177,50 @@ namespace NewFoodCount
             intFoodFat.Value = fat;
             tbFoodCal.Text = calorific.ToString("F");
             tbFoodName.Text = productName;
+        }
+
+        private void UpdateCalorificSegmentCollection()
+        {
+            CalorificSegmentControl.Dishes.Clear();
+            foreach (Dish dish in DayDishes)
+            {
+                CalorificSegmentControl.Dishes.Add(dish);
+            }
+        }
+
+        private void UpdateCarbohydrateSegmentCollection()
+        {
+            CarbohydrateSegmentControl.Dishes.Clear();
+            foreach (Dish dish in DayDishes)
+            {
+                CarbohydrateSegmentControl.Dishes.Add(dish);
+            }
+        }
+
+        private void UpdateProteinSegmentCollection()
+        {
+            ProteinSegmentControl.Dishes.Clear();
+            foreach (Dish dish in DayDishes)
+            {
+                ProteinSegmentControl.Dishes.Add(dish);
+            }
+        }
+
+        private void UpdateFatSegmentCollection()
+        {
+            FatSegmentControl.Dishes.Clear();
+            foreach (Dish dish in DayDishes)
+            {
+                FatSegmentControl.Dishes.Add(dish);
+            }
+        }
+
+        private void UpdateAllSegmentControls()
+        {
+            UpdateCalorificSegmentCollection();
+            UpdateCarbohydrateSegmentCollection();
+            UpdateProteinSegmentCollection();
+            UpdateFatSegmentCollection();
         }
     }
 }
