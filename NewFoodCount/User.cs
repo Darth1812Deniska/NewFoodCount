@@ -246,7 +246,7 @@ namespace NewFoodCount
             else
             {
                 users = new UserCollection();
-            }
+            } 
         }
 
         public static void SaveUsers() 

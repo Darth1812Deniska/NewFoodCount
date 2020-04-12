@@ -47,36 +47,36 @@ namespace NewFoodCount
         }
         private double GetProtein()
         {
-            return Product.Protein * Weight;
+            return Math.Round(Product.Protein * Weight, 2);
         }
         private double GetCarbohydrate()
         {
-            return Product.Carbohydrate * Weight;
+            return Math.Round(Product.Carbohydrate * Weight, 2);
         }
         private double GetFat()
         {
-            return Product.Fat * Weight;
+            return Math.Round(Product.Fat * Weight, 2);
         }
         private double GetCalorific()
         {
-            return Product.Calorific * Weight;
+            return Math.Round(Product.Calorific * Weight, 2);
         }
 
         private void SetProtein(double value)
         {
-            weight = value / Product.Protein;
+            weight = Math.Round(value / Product.Protein, 2);
         }
         private void SetCarbohydrate(double value)
         {
-            weight = value / Product.Carbohydrate;
+            weight = Math.Round(value / Product.Carbohydrate, 2);
         }
         private void SetFat(double value)
         {
-            weight = value / Product.Fat;
+            weight = Math.Round(value / Product.Fat, 2);
         }
         private void SetCalorific(double value)
         {
-            weight = value / Product.Calorific;
+            weight = Math.Round(value / Product.Calorific, 2);
         }
 
         public override string ToString()
