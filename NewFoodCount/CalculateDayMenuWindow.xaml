@@ -81,7 +81,7 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0">Белки</Label>
                     <ListBox Grid.Row="1" Name="lbProts"/>
-                    
+
                 </Grid>
                 <Grid Grid.Column="0" Grid.Row="2">
                     <Grid.RowDefinitions>
@@ -108,7 +108,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <ListBox Grid.Column="0" Name="lbFoodList" SelectionChanged="lbFoodList_SelectionChanged"/>
-                    <Button Name="btnDeleteFood" Content="Удалить" Grid.Column="1" Width="50" Height="20" Margin="5,0"/>
+                    <Button Name="btnDeleteFood" Content="Удалить" Grid.Column="1" Width="50" Height="20" Margin="5,0" Click="btnDeleteFood_Click"/>
 
                 </Grid>
                 <Grid Grid.Row="1">
@@ -133,10 +133,10 @@
                     <Label Grid.Column="0" Grid.Row="5">Калории:</Label>
                     <Label Grid.Column="0" Grid.Row="6">Маркер</Label>
                     <TextBlock Name="tbFoodName" Grid.Column="1" Grid.Row="0" />
-                    <xctk:DoubleUpDown Name="intFoodMass" Grid.Column="1" Grid.Row="1"/>
-                    <xctk:DoubleUpDown Name="intFoodCarbon" Grid.Column="1" Grid.Row="2"/>
-                    <xctk:DoubleUpDown Name="intFoodProt" Grid.Column="1" Grid.Row="3"/>
-                    <xctk:DoubleUpDown Name="intFoodFat" Grid.Column="1" Grid.Row="4"/>
+                    <xctk:DoubleUpDown Name="intFoodMass" Grid.Column="1" Grid.Row="1" Increment="0.1" Minimum="0" ValueChanged="intFoodMass_ValueChanged"/>
+                    <xctk:DoubleUpDown Name="intFoodCarbon" Grid.Column="1" Grid.Row="2" Increment="0.1" Minimum="0" ValueChanged="intFoodCarbon_ValueChanged"/>
+                    <xctk:DoubleUpDown Name="intFoodProt" Grid.Column="1" Grid.Row="3" Increment="0.1" Minimum="0" ValueChanged="intFoodProt_ValueChanged"/>
+                    <xctk:DoubleUpDown Name="intFoodFat" Grid.Column="1" Grid.Row="4" Increment="0.1" Minimum="0" ValueChanged="intFoodFat_ValueChanged"/>
                     <TextBlock Name="tbFoodCal" Grid.Column="1" Grid.Row="5"/>
                     <Rectangle Name="rFoodColor" Grid.Column="1" Grid.Row="6" Stroke="Black"/>
                 </Grid>
@@ -212,6 +212,6 @@
 
             </Grid>
         </Grid>
-        
+
     </Grid>
 </Window>

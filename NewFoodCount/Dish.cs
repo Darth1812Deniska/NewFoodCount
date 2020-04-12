@@ -8,14 +8,23 @@ using System.Drawing;
 
 namespace NewFoodCount
 {
+    /// <summary>
+    /// Класс описывающий блюдо
+    /// </summary>
     public class Dish
     {
         private readonly Product _product;
         private readonly Brush color;
         private double weight;
 
+        /// <summary>
+        /// Продукт из которого состоит блюдо
+        /// </summary>
         public Product Product => _product;
-        public double Weight { get => weight; set => weight = value; }
+        /// <summary> 
+        /// Вес блюда
+        /// </summary>
+        public double Weight { get => weight; set => weight = value; } 
         public double Protein { get => GetProtein(); set => SetProtein(value); }
         public double Carbohydrate { get => GetCarbohydrate(); set => SetCarbohydrate(value); }
         public double Fat { get => GetFat(); set => SetFat(value); }
@@ -37,6 +46,7 @@ namespace NewFoodCount
             color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
               (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
+
         public Dish(Product product, double weight)
         {
             _product = product;
@@ -45,6 +55,7 @@ namespace NewFoodCount
             color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
               (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
+
         private double GetProtein()
         {
             return Math.Round(Product.Protein * Weight, 2);
@@ -150,6 +161,74 @@ namespace NewFoodCount
             }
         }
 
+        public Dish EditDishWeight(Product product, double newWeight)
+        {
+            Dish dish = this.Find(x => x.Product == product);
+            dish.Weight = newWeight;
+            return dish;
+
+        }
+        public Dish EditDishWeight(Dish dish, double newWeight)
+        {
+            Dish result = new Dish();
+            if (dish != null)
+            {
+                Product product = dish.Product;
+                result = EditDishWeight(product, newWeight);
+            }
+            return result;
+        }
+        public Dish EditDishCarbohydrate(Product product, double newWeight)
+        {
+            Dish dish = this.Find(x => x.Product == product);
+            dish.Carbohydrate = newWeight;
+            return dish;
+        }
+
+        public Dish EditDishCarbohydrate(Dish dish, double newWeight)
+        {
+            Dish result = new Dish();
+            if (dish != null)
+            {
+                Product product = dish.Product;
+                result = EditDishCarbohydrate(product, newWeight);
+            }
+            return result;
+        }
+        public Dish EditDishProtein(Product product, double newWeight)
+        {
+            Dish dish = this.Find(x => x.Product == product);
+            dish.Protein = newWeight;
+            return dish;
+        }
+        public Dish EditDishProtein(Dish dish, double newWeight)
+        {
+            Dish result = new Dish();
+            if (dish != null)
+            {
+                Product product = dish.Product;
+                result = EditDishProtein(product, newWeight);
+            }
+            return result;
+        }
+        public Dish EditDishFat(Product product, double newWeight)
+        {
+            Dish dish = this.Find(x => x.Product == product);
+            dish.Fat = newWeight;
+            return dish;
+        }
+        public Dish EditDishFat(Dish dish, double newWeight)
+        {
+            Dish result = new Dish();
+            if (dish != null)
+            {
+                Product product = dish.Product;
+                result = EditDishFat(product, newWeight);
+            }
+            return result;
+        }
+        
+
         // Перерасчет масс других продуктов
         private void MassRecalculationAddingProtein(double addingWeight)
         {
@@ -162,7 +241,11 @@ namespace NewFoodCount
          
             for (int i = 0; i < this.Count; i++)
             {
-                this[i].Protein = productProportions[this[i].Product] * prevDishWeight;
+                // Чтобы не занулить массу всего блюда, пропускаем нутриенты чья масса 0
+                if (productProportions[this[i].Product] > 0)
+                {
+                    this[i].Protein = productProportions[this[i].Product] * prevDishWeight;
+                }
             }
         }
 
@@ -176,7 +259,11 @@ namespace NewFoodCount
             double prevDishWeight = MaxCarbohydrate - addingWeight;
             for (int i = 0; i < this.Count; i++)
             {
-                this[i].Carbohydrate = productProportions[this[i].Product] * prevDishWeight;
+                // Чтобы не занулить массу всего блюда, пропускаем нутриенты чья масса 0
+                if (productProportions[this[i].Product] > 0)
+                {
+                    this[i].Carbohydrate = productProportions[this[i].Product] * prevDishWeight;
+                }
             }
         }
 
@@ -190,7 +277,11 @@ namespace NewFoodCount
             double prevDishWeight = MaxFat - addingWeight;
             for (int i = 0; i < this.Count; i++)
             {
-                this[i].Fat = productProportions[this[i].Product] * prevDishWeight;
+                // Чтобы не занулить массу всего блюда, пропускаем нутриенты чья масса 0
+                if (productProportions[this[i].Product] > 0)
+                {
+                    this[i].Fat = productProportions[this[i].Product] * prevDishWeight;
+                }
             }
         }
         private double GetCurrentProteinMass()
