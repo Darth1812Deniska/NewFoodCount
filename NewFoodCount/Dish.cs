@@ -112,9 +112,10 @@ namespace NewFoodCount
         public double MaxCarbohydrate { get; set; }
         public double MaxFat { get; set; }
         public double MaxCalorific { get; set; }
-        private double CurrentProteinMass { get=>GetCurrentProteinMass(); }
-        private double CurrentCarbohydrateMass { get =>GetCurrentCarbohydrateMass(); }
-        private double CurrentFatMass { get => GetCurrentFatMass(); }
+        public double CurrentCalorificMass { get => GetCurrentCalorificMass(); }
+        public double CurrentProteinMass { get=>GetCurrentProteinMass(); }
+        public double CurrentCarbohydrateMass { get =>GetCurrentCarbohydrateMass(); }
+        public double CurrentFatMass { get => GetCurrentFatMass(); }
         private double CurrentProteinRemains { get => GetCurrentProteinRemains(); }
         private double CurrentCarbohydrateRemains { get => GetCurrentCarbohydrateRemains(); }
         private double CurrentFatRemains { get => GetCurrentFatRemains(); }
@@ -130,6 +131,14 @@ namespace NewFoodCount
                 MassRecalculationAddingProtein(addingWeight);
                 this.Add(dish);
 
+                if (CheckCarbohydrateForOverage())
+                {
+                    RecalculationCarbohydrateToMax();
+                }
+                if (CheckFatForOverage())
+                {
+                    RecalculationFatToMax();
+                }
             }
         }
 
@@ -144,6 +153,15 @@ namespace NewFoodCount
                 };
                 MassRecalculationAddingCarbohydrate(addingWeight);
                 this.Add(dish);
+
+                if (CheckProteinForOverage())
+                {
+                    RecalculationProteinToMax();
+                }
+                if (CheckFatForOverage())
+                {
+                    RecalculationFatToMax();
+                }
             }
         }
 
@@ -158,6 +176,15 @@ namespace NewFoodCount
                 };
                 MassRecalculationAddingFat(addingWeight);
                 this.Add(dish);
+
+                if (CheckProteinForOverage())
+                {
+                    RecalculationProteinToMax();
+                }
+                if (CheckCarbohydrateForOverage())
+                {
+                    RecalculationCarbohydrateToMax();
+                }
             }
         }
 
@@ -247,6 +274,7 @@ namespace NewFoodCount
                     this[i].Protein = productProportions[this[i].Product] * prevDishWeight;
                 }
             }
+            
         }
 
         private void MassRecalculationAddingCarbohydrate(double addingWeight)
@@ -284,6 +312,86 @@ namespace NewFoodCount
                 }
             }
         }
+
+        // Перерасчет белка до максимума
+        public void RecalculationProteinToMax()
+        {
+            Dictionary<Product, double> productProportions = new Dictionary<Product, double>();
+            foreach (Dish dish in this)
+            {
+                productProportions.Add(dish.Product, dish.Protein / CurrentProteinMass);
+            }
+            for (int i = 0; i<this.Count; i++)
+            {
+                if (productProportions[this[i].Product] > 0)
+                {
+                    this[i].Protein = productProportions[this[i].Product] * MaxProtein;
+                }
+            }
+        }
+
+        // Перерасчет углеводов до максимума
+        public void RecalculationCarbohydrateToMax()
+        {
+            Dictionary<Product, double> productProportions = new Dictionary<Product, double>();
+            foreach (Dish dish in this)
+            {
+                productProportions.Add(dish.Product, dish.Carbohydrate / CurrentCarbohydrateMass);
+            }
+            for (int i = 0; i < this.Count; i++)
+            {
+                if (productProportions[this[i].Product] > 0)
+                {
+                    this[i].Carbohydrate = productProportions[this[i].Product] * MaxCarbohydrate;
+                }
+            }
+        }
+
+        // Перерасчет жиров до максимума
+        public void RecalculationFatToMax()
+        {
+            Dictionary<Product, double> productProportions = new Dictionary<Product, double>();
+            foreach (Dish dish in this)
+            {
+                productProportions.Add(dish.Product, dish.Fat / CurrentFatMass);
+            }
+            for (int i = 0; i < this.Count; i++)
+            {
+                if (productProportions[this[i].Product] > 0)
+                {
+                    this[i].Fat = productProportions[this[i].Product] * MaxFat;
+                }
+            }
+        }
+
+        // Проверка на избыток белка
+        private bool CheckProteinForOverage()
+        {
+            return CurrentProteinMass > MaxProtein;
+        }
+
+        // Проверка на тзбыток углеводов
+        private bool CheckCarbohydrateForOverage()
+        {
+            return CurrentCarbohydrateMass > MaxCarbohydrate;
+        }
+
+        // Проверка на избыток жиров
+        private bool CheckFatForOverage()
+        {
+            return CurrentFatMass > MaxFat;
+        }
+
+        private double GetCurrentCalorificMass()
+        {
+            double result = 0;
+            foreach (Dish dish in this)
+            {
+                result += dish.Calorific;
+            }
+            return result;
+        }    
+            
         private double GetCurrentProteinMass()
         {
             double result = 0;

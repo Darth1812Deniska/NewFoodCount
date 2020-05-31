@@ -51,9 +51,9 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="5,0">
                 <Grid.RowDefinitions>
@@ -152,61 +152,93 @@
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Общая калорийность</Label>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label  Grid.Column="0" VerticalAlignment="Bottom">Общая калорийность</Label>
+                        <TextBlock Grid.Column="2" x:Name="tbCalorificCount" HorizontalAlignment="Right"/>
+                    </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="5*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid x:Name="recCalorific" Grid.Column="0" />
-                        <TextBlock Grid.Column="1"/>
+                        
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Углеводы</Label>
+                    <Grid Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" VerticalAlignment="Bottom">Углеводы</Label>
+                        <TextBlock x:Name="tbCarbonsCount" Grid.Column="2"/>
+                    </Grid>
                     <Grid  Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="5*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid x:Name="recCarbons" Grid.Column="0"/>
-                        <TextBlock Grid.Column="1"/>
+                        <Button x:Name="btnSetCarbonsToMax" Grid.Column="1" Click="btnSetCarbonsToMax_Click">MAX</Button>
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Белки</Label>
+                    <Grid Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" VerticalAlignment="Bottom">Белки</Label>
+                        <TextBlock x:Name="tbProtsCount" Grid.Column="2"/>
+                    </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="5*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid x:Name="recProts" Grid.Column="0" />
-                        <TextBlock Grid.Column="1"/>
+                        <Button x:Name="btnSetProtsToMax" Grid.Column="1" Click="btnSetProtsToMax_Click">MAX</Button>
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">Жиры</Label>
+                    <Grid Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" VerticalAlignment="Bottom">Жиры</Label>
+                        <TextBlock x:Name="tbFatsCount" Grid.Column="2"/>
+                    </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="5*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid x:Name="recFats" Grid.Column="0" />
-                        <TextBlock Grid.Column="1" />
+                        <Button x:Name="btnSetFatsToMax" Grid.Column="1" Click="btnSetFatsToMax_Click">MAX</Button>
                     </Grid>
                 </Grid>
 

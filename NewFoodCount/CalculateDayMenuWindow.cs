@@ -172,7 +172,6 @@ namespace NewFoodCount
 
         private void lbFoodList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UnsubscribeSpinnersEvents();
             SetFoodControlsEnabledValue(true);
             Dish dish = ((ListBox)sender).SelectedItem as Dish;
             if (dish != null)
@@ -183,7 +182,7 @@ namespace NewFoodCount
                 double protein = dish.Protein;
                 double fat = dish.Fat;
                 string productName = dish.Product.Name;
-
+                UnsubscribeSpinnersEvents();
                 intFoodMass.Value = weight;
                 intFoodCarbon.Value = carbohydrate;
                 intFoodProt.Value = protein;
@@ -191,9 +190,11 @@ namespace NewFoodCount
                 tbFoodCal.Text = calorific.ToString("F");
                 tbFoodName.Text = productName;
                 rFoodColor.Fill = dish.DishColor;
+                SubscribeSpinnersEvents();
             }
             else
             {
+                UnsubscribeSpinnersEvents();
                 intFoodMass.Text = string.Empty;
                 intFoodCarbon.Text = string.Empty;
                 intFoodProt.Text = string.Empty;
@@ -201,8 +202,9 @@ namespace NewFoodCount
                 tbFoodCal.Text = string.Empty;
                 tbFoodName.Text = string.Empty;
                 rFoodColor.Fill = Brushes.Transparent;
+                SubscribeSpinnersEvents();
             }
-            SubscribeSpinnersEvents();
+            
         }
 
         private void UpdateCalorificSegmentCollection()
@@ -247,6 +249,7 @@ namespace NewFoodCount
             UpdateCarbohydrateSegmentCollection();
             UpdateProteinSegmentCollection();
             UpdateFatSegmentCollection();
+            UpdateAllTbCounts();
         }
 
         private void SetControlsEnabled()
@@ -305,39 +308,70 @@ namespace NewFoodCount
 
         private void intFoodMass_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            UnsubscribeSpinnersEvents();
             Dish dish = lbFoodList.SelectedItem as Dish;
-            double weight = (double)(sender as DoubleUpDown).Value;
-            Dish result = DayDishes.EditDishWeight(dish, weight);
+            if (dish != null)
+            {
+                double weight = (double)(sender as DoubleUpDown).Value;
+                Dish result = DayDishes.EditDishWeight(dish, weight);
+                intFoodCarbon.Value = result.Carbohydrate;
+                intFoodProt.Value = result.Protein;
+                intFoodFat.Value = result.Fat;
+            }
             UpdateAllSegmentControls();
             dishesList = new ObservableCollection<Dish>(DayDishes);
+            SubscribeSpinnersEvents();
         }
 
         private void intFoodCarbon_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            UnsubscribeSpinnersEvents();
             Dish dish = lbFoodList.SelectedItem as Dish;
-            double weight = (double)(sender as DoubleUpDown).Value;
-            Dish result = DayDishes.EditDishCarbohydrate(dish, weight);
+            if (dish != null)
+            {
+                double weight = (double)(sender as DoubleUpDown).Value;
+                Dish result = DayDishes.EditDishCarbohydrate(dish, weight);
+                intFoodMass.Value = result.Weight;
+                intFoodProt.Value = result.Protein;
+                intFoodFat.Value = result.Fat;
+            }
             UpdateAllSegmentControls();
             dishesList = new ObservableCollection<Dish>(DayDishes);
+            SubscribeSpinnersEvents();
         }
 
         private void intFoodProt_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            UnsubscribeSpinnersEvents();
             Dish dish = lbFoodList.SelectedItem as Dish;
-            double weight = (double)(sender as DoubleUpDown).Value;
-            Dish result = DayDishes.EditDishProtein(dish, weight);
+            if (dish != null)
+            {
+                double weight = (double)(sender as DoubleUpDown).Value;
+                Dish result = DayDishes.EditDishProtein(dish, weight);
+                intFoodMass.Value = result.Weight;
+                intFoodCarbon.Value = result.Carbohydrate;
+                intFoodFat.Value = result.Fat;
+            }
             UpdateAllSegmentControls();
             dishesList = new ObservableCollection<Dish>(DayDishes);
+            SubscribeSpinnersEvents();
         }
 
         private void intFoodFat_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            UnsubscribeSpinnersEvents();
             Dish dish = lbFoodList.SelectedItem as Dish;
-            double weight = (double)(sender as DoubleUpDown).Value;
-            Dish result = DayDishes.EditDishFat(dish, weight);
+            if (dish != null)
+            {
+                double weight = (double)(sender as DoubleUpDown).Value;
+                Dish result = DayDishes.EditDishFat(dish, weight);
+                intFoodMass.Value = result.Weight;
+                intFoodCarbon.Value = result.Carbohydrate;
+                intFoodProt.Value = result.Protein;
+            }
             UpdateAllSegmentControls();
             dishesList = new ObservableCollection<Dish>(DayDishes);
-
+            SubscribeSpinnersEvents();
         }
 
         private void UnsubscribeSpinnersEvents()
@@ -353,6 +387,64 @@ namespace NewFoodCount
             intFoodCarbon.ValueChanged += intFoodCarbon_ValueChanged;
             intFoodProt.ValueChanged += intFoodProt_ValueChanged;
             intFoodFat.ValueChanged += intFoodFat_ValueChanged;
+        }
+
+        private void UpdateTbCalorificCount()
+        {
+            string currentMass = DayDishes.CurrentCalorificMass.ToString("F");
+            string maxString = DayDishes.MaxCalorific.ToString("F");
+            string text = currentMass + "ккал / " + maxString + "ккал";
+            tbCalorificCount.Text = text;
+        }
+
+        private void UpdateTbCarbonsCount()
+        {
+            string currentCarbohydrateMass = DayDishes.CurrentCarbohydrateMass.ToString("F");
+            string maxString = DayDishes.MaxCarbohydrate.ToString("F");
+            string text = currentCarbohydrateMass + "г / " + maxString + "г";
+            tbCarbonsCount.Text = text;
+        }
+
+        private void UpdateTbProtsCount()
+        {
+            string currentProteinMass = DayDishes.CurrentProteinMass.ToString("F");
+            string maxString = DayDishes.MaxProtein.ToString("F");
+            string text = currentProteinMass + "г / " + maxString + "г";
+            tbProtsCount.Text = text;
+        }
+
+        private void UpdateTbFatsCount()
+        {
+            string currentFatMass = DayDishes.CurrentFatMass.ToString("F");
+            string maxString = DayDishes.MaxFat.ToString("F");
+            string text = currentFatMass + "г / " + maxString + "г";
+            tbFatsCount.Text = text;
+        }
+
+        private void UpdateAllTbCounts()
+        {
+            UpdateTbCalorificCount();
+            UpdateTbCarbonsCount();
+            UpdateTbProtsCount();
+            UpdateTbFatsCount();
+        }
+
+        private void btnSetCarbonsToMax_Click(object sender, RoutedEventArgs e)
+        {
+            DayDishes.RecalculationCarbohydrateToMax();
+            UpdateAllSegmentControls();
+        }
+
+        private void btnSetProtsToMax_Click(object sender, RoutedEventArgs e)
+        {
+            DayDishes.RecalculationProteinToMax();
+            UpdateAllSegmentControls();
+        }
+
+        private void btnSetFatsToMax_Click(object sender, RoutedEventArgs e)
+        {
+            DayDishes.RecalculationFatToMax();
+            UpdateAllSegmentControls();
         }
     }
 }
