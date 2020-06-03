@@ -15,6 +15,7 @@ namespace NewFoodCount
     {
         private readonly Product _product;
         private readonly Brush color;
+        private readonly NutrientType addAsNutrientType;
         private double weight;
 
         /// <summary>
@@ -24,13 +25,13 @@ namespace NewFoodCount
         /// <summary> 
         /// Вес блюда
         /// </summary>
-        public double Weight { get => weight; set => weight = value; } 
+        public double Weight { get => weight; set => weight = value; }
         public double Protein { get => GetProtein(); set => SetProtein(value); }
         public double Carbohydrate { get => GetCarbohydrate(); set => SetCarbohydrate(value); }
         public double Fat { get => GetFat(); set => SetFat(value); }
         public double Calorific { get => GetCalorific(); set => SetCalorific(value); }
         public Brush DishColor => color;
-        
+        public NutrientType AddAsNutrientType => addAsNutrientType;
 
         public Dish()
         {
@@ -39,18 +40,20 @@ namespace NewFoodCount
               (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
 
-        public Dish(Product product)
+        public Dish(Product product, NutrientType nutrientType)
         {
             this._product = product;
+            addAsNutrientType = nutrientType;
             Random r = new Random();
             color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
               (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
 
-        public Dish(Product product, double weight)
+        public Dish(Product product, NutrientType nutrientType, double weight)
         {
             _product = product;
             Weight = weight;
+            addAsNutrientType = nutrientType;
             Random r = new Random();
             color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
               (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
@@ -124,7 +127,7 @@ namespace NewFoodCount
             if (!this.Exists(x => x.Product == product))
             {
                 double addingWeight = GetProteinAddingWeight();
-                Dish dish = new Dish(product)
+                Dish dish = new Dish(product, NutrientType.Protein)
                 {
                     Protein = addingWeight
                 };
@@ -147,7 +150,7 @@ namespace NewFoodCount
             if (!this.Exists(x => x.Product == product))
             {
                 double addingWeight = GetCarbohydrateAddingWeight();
-                Dish dish = new Dish(product)
+                Dish dish = new Dish(product,NutrientType.Carbohydrate)
                 {
                     Carbohydrate = addingWeight
                 };
@@ -170,7 +173,7 @@ namespace NewFoodCount
             if (!this.Exists(x => x.Product == product))
             {
                 double addingWeight = GetFatAddingWeight();
-                Dish dish = new Dish(product)
+                Dish dish = new Dish(product, NutrientType.Fat)
                 {
                     Fat = addingWeight
                 };

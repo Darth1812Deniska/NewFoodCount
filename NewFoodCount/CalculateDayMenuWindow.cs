@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace NewFoodCount
         private readonly ProductSegmentControl carbohydrateSegmentControl;
         private readonly ProductSegmentControl proteinSegmentControl;
         private readonly ProductSegmentControl fatSegmentControl;
+        private readonly IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "," };
 
         private List<Product> CarbohydrateProducts => AllProducts.GetCarbohydrateProducts();
         private List<Product> ProteinProducts => AllProducts.GetProteinProducts();
@@ -130,9 +132,9 @@ namespace NewFoodCount
             DayDishes.MaxCarbohydrate = CarbohydratesRate;
             DayDishes.MaxFat = FatRate;
             DayDishes.MaxCalorific = UserDayCalorific;
-            tbCarbons.Text = CarbohydratesRate.ToString("F");
-            tbProts.Text = ProteinRate.ToString("F");
-            tbFats.Text = FatRate.ToString("F");
+            tbCarbons.Text = CarbohydratesRate.ToString("F", formatter);
+            tbProts.Text = ProteinRate.ToString("F", formatter);
+            tbFats.Text = FatRate.ToString("F", formatter);
             CalorificSegmentControl.MaxDimension = UserDayCalorific;
             CarbohydrateSegmentControl.MaxDimension = CarbohydratesRate;
             ProteinSegmentControl.MaxDimension = ProteinRate;
@@ -146,15 +148,15 @@ namespace NewFoodCount
             {
                 double proteinRatePerWeight = ((Slider)sender).Value;
                 CurrentUser.ProteinRatePerWeight = proteinRatePerWeight;
-                textProtPerWeight.Text = proteinRatePerWeight.ToString("F");
+                textProtPerWeight.Text = proteinRatePerWeight.ToString("F", formatter);
                 DayDishes.MaxProtein = ProteinRate;
                 DayDishes.MaxCarbohydrate = CarbohydratesRate;
                 DayDishes.MaxFat = FatRate;
                 DayDishes.MaxCalorific = UserDayCalorific;
-                tbCarbons.Text = CarbohydratesRate.ToString("F");
-                tbProts.Text = ProteinRate.ToString("F");
-                tbFats.Text = FatRate.ToString("F");
-                tbCalorific.Text = UserDayCalorific.ToString("F");
+                tbCarbons.Text = CarbohydratesRate.ToString("F", formatter);
+                tbProts.Text = ProteinRate.ToString("F", formatter);
+                tbFats.Text = FatRate.ToString("F", formatter);
+                tbCalorific.Text = UserDayCalorific.ToString("F", formatter);
                 if (UserDayCalorific < MinCalorificLimit)
                 {
                     tbCalorific.Foreground = Brushes.Green;
@@ -187,7 +189,7 @@ namespace NewFoodCount
                 intFoodCarbon.Value = carbohydrate;
                 intFoodProt.Value = protein;
                 intFoodFat.Value = fat;
-                tbFoodCal.Text = calorific.ToString("F");
+                tbFoodCal.Text = calorific.ToString("F", formatter);
                 tbFoodName.Text = productName;
                 rFoodColor.Fill = dish.DishColor;
                 SubscribeSpinnersEvents();
@@ -391,32 +393,32 @@ namespace NewFoodCount
 
         private void UpdateTbCalorificCount()
         {
-            string currentMass = DayDishes.CurrentCalorificMass.ToString("F");
-            string maxString = DayDishes.MaxCalorific.ToString("F");
+            string currentMass = DayDishes.CurrentCalorificMass.ToString("F", formatter);
+            string maxString = DayDishes.MaxCalorific.ToString("F", formatter);
             string text = currentMass + "ккал / " + maxString + "ккал";
             tbCalorificCount.Text = text;
         }
 
         private void UpdateTbCarbonsCount()
         {
-            string currentCarbohydrateMass = DayDishes.CurrentCarbohydrateMass.ToString("F");
-            string maxString = DayDishes.MaxCarbohydrate.ToString("F");
+            string currentCarbohydrateMass = DayDishes.CurrentCarbohydrateMass.ToString("F", formatter);
+            string maxString = DayDishes.MaxCarbohydrate.ToString("F", formatter);
             string text = currentCarbohydrateMass + "г / " + maxString + "г";
             tbCarbonsCount.Text = text;
         }
 
         private void UpdateTbProtsCount()
         {
-            string currentProteinMass = DayDishes.CurrentProteinMass.ToString("F");
-            string maxString = DayDishes.MaxProtein.ToString("F");
+            string currentProteinMass = DayDishes.CurrentProteinMass.ToString("F", formatter);
+            string maxString = DayDishes.MaxProtein.ToString("F", formatter);
             string text = currentProteinMass + "г / " + maxString + "г";
             tbProtsCount.Text = text;
         }
 
         private void UpdateTbFatsCount()
         {
-            string currentFatMass = DayDishes.CurrentFatMass.ToString("F");
-            string maxString = DayDishes.MaxFat.ToString("F");
+            string currentFatMass = DayDishes.CurrentFatMass.ToString("F", formatter);
+            string maxString = DayDishes.MaxFat.ToString("F", formatter);
             string text = currentFatMass + "г / " + maxString + "г";
             tbFatsCount.Text = text;
         }
