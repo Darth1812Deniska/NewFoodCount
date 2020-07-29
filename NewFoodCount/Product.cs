@@ -96,17 +96,17 @@ namespace NewFoodCount
 
         public static List<Product> GetProteinProducts()
         {
-            return Products.OrderByDescending(x => x.Protein).ToList();
+            return Products.Where(x => x.Protein != 0).OrderByDescending(x => x.Protein).ToList();
         }
 
         public static List<Product> GetCarbohydrateProducts()
         {
-            return Products.OrderByDescending(x => x.Carbohydrate).ToList();
+            return Products.Where(x => x.Carbohydrate != 0).OrderByDescending(x => x.Carbohydrate).ToList();
         }
 
         public static List<Product> GetFatProducts()
         {
-            return Products.OrderByDescending(x => x.Fat).ToList();
+            return Products.Where(x => x.Fat != 0).OrderByDescending(x => x.Fat).ToList();
         }
     }
 

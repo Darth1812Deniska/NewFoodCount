@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:NewFoodCount"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="400">
-    <Grid>
-            
+    <Grid x:Name="MainGrid" SizeChanged="MainGrid_SizeChanged" MinHeight="20">
+        <Border BorderBrush="Black" BorderThickness="1">
+            <StackPanel x:Name="MainPanel" Orientation="Horizontal"/>
+        </Border>
+        
     </Grid>
 </UserControl>
