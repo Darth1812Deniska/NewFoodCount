@@ -1,0 +1,53 @@
+﻿<Window xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  x:Class="NewFoodCount.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewFoodCount"
+        mc:Ignorable="d"
+        Title="wndAddFinishedProduct" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right">Название</Label>
+        <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right">Протеины</Label>
+        <Label Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Right">Углеводы</Label>
+        <Label Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right">Жиры</Label>
+        <Label Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Right">Калорийность</Label>
+        <TextBox x:Name="txtProductName" Grid.Column="1" Grid.Row="0" Margin="3"/>
+        <xctk:DoubleUpDown x:Name="udProtein" Grid.Column="1" Grid.Row="2" Margin="3" Increment="0.1" Minimum="0"/>
+        <xctk:DoubleUpDown x:Name="udCarbohydrate" Grid.Column="1" Grid.Row="3" Margin="3" Increment="0.1" Minimum="0"/>
+        <xctk:DoubleUpDown x:Name="udFat" Grid.Column="1" Grid.Row="4" Margin="3" Increment="0.1" Minimum="0"/>
+        <xctk:DoubleUpDown x:Name="udCalorific" Grid.Column="1" Grid.Row="5" Margin="3" Increment="0.1" Minimum="0"/>
+        <Grid Grid.Row="6" Grid.Column="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnSave" Grid.Column="0" Padding="5,1" MinWidth="80" Click="btnSave_Click" >Сохранить</Button>
+            <Button x:Name="btnCancel" Grid.Column="1" Padding="5,1" MinHeight="20" MinWidth="80" Click="btnCancel_Click" >Отмена</Button>
+        </Grid>
+        <Label Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right">Пропорция</Label>
+        <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <RadioButton x:Name="rb100" Grid.Column="0" IsChecked="True">1/100</RadioButton>
+            <RadioButton x:Name="rb1" Grid.Column="1">1/1</RadioButton>
+            
+
+        </Grid>
+    </Grid>
+</Window>

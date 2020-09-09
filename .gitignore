@@ -1,2 +1,18 @@
 
 NewFoodCount/.vs/NewFoodCount/v16/
+
+*.cache
+
+NewFoodCount/bin/Debug/
+
+NewFoodCount/obj/Debug/
+
+NewFoodCount/packages/Microsoft.NetFramework.Analyzers.2.9.8/tools/
+
+NewFoodCount/packages/Microsoft.NetFramework.Analyzers.2.9.8/
+
+NewFoodCount/packages/Extended.Wpf.Toolkit.3.5.0/
+
+NewFoodCount/packages/Extended.Wpf.Toolkit.3.7.0/
+
+NewFoodCount/packages/
