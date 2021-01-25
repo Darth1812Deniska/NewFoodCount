@@ -76,16 +76,18 @@ namespace NewFoodCount
                         dimension = dish.Calorific;
                         break;
                 }
-
-                var width = Math.Round(dimension * this.ActualWidth / MaxDimension);
-                int newRecWidth = Convert.ToInt32(width);
-                Rectangle rectangle = new Rectangle
+                if (!double.IsNaN(dimension))
                 {
-                    Width = newRecWidth,
-                    Height = this.Height,
-                    Fill = dish.DishColor
-                };
-                MainPanel.Children.Add(rectangle);
+                    var width = Math.Round(dimension * this.ActualWidth / MaxDimension);
+                    int newRecWidth = Convert.ToInt32(width);
+                    Rectangle rectangle = new Rectangle
+                    {
+                        Width = newRecWidth,
+                        Height = this.Height,
+                        Fill = dish.DishColor
+                    };
+                    MainPanel.Children.Add(rectangle);
+                }
             }
         }
     }

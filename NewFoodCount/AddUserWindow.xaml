@@ -39,8 +39,8 @@
             <RadioButton x:Name="rbFemale" Grid.Column="1" Content="Женский" GroupName="Gender" Margin="1"/>
         </Grid>
         <Calendar x:Name="calBirthDay" Grid.Column="1" Grid.Row="2" Margin="1" SelectedDate="{Binding ElementName=WndUser, Path=UserBirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <xctk:IntegerUpDown x:Name="udHeight" Grid.Column="1" Grid.Row="3" Margin="1" Value="{Binding ElementName=WndUser, Path=UserHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <xctk:DoubleUpDown x:Name="udWeight" Grid.Column="1" Grid.Row="4" Margin="1" Value="{Binding ElementName=WndUser, Path=UserWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"/>
+        <xctk:IntegerUpDown x:Name="udHeight" Grid.Column="1" Grid.Row="3" Margin="1" Value="{Binding ElementName=WndUser, Path=UserHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0"/>
+        <xctk:DoubleUpDown x:Name="udWeight" Grid.Column="1" Grid.Row="4" Margin="1" Value="{Binding ElementName=WndUser, Path=UserWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Increment="0.1" Minimum="0"/>
         <ComboBox x:Name="cmbPurpose" Grid.Row="5" Grid.Column="1" Margin="1" SelectedItem="{Binding ElementName=WndUser, Path=UserPurpose, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <local:UserPurpose>LosingWeight</local:UserPurpose>
             <local:UserPurpose>WeightRetention</local:UserPurpose>
