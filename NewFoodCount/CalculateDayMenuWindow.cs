@@ -451,7 +451,7 @@ namespace NewFoodCount
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            SavingWindow savingWindow = new SavingWindow(DayDishes);
+            SavingWindow savingWindow = new SavingWindow(DayDishes, CurrentUser);
             savingWindow.Show();
         }
 

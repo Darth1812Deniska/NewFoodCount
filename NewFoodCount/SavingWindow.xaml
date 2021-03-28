@@ -9,8 +9,8 @@
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <ListBox x:Name="lstResultList" Margin="10"/>
@@ -21,14 +21,21 @@
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0"></Grid>
+                <Grid Grid.Row="0">
+                    <StackPanel Margin="0,0,10,0">
+                        <Label Content="Выбранный Пользователь"/>
+                        <ComboBox x:Name="cmbSelectedUser"/>
+                        <Label Content="Дата Меню"/>
+                        <DatePicker x:Name="dtpMenuDate"/>
+                    </StackPanel>
+                </Grid>
                 <Grid Grid.Row="1" Margin="0,0,10,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="btnSavetoFile" Grid.Column="0" Content="Сохранить&#10;в файл" />
+                    <Button x:Name="btnSavetoFile" Grid.Column="0" Content="Сохранить&#10;в файл" Click="btnSavetoFile_Click" />
                     <Button x:Name="btnPrint" Grid.Column="1" Content="Печать" Margin="5,0,0,0"></Button>
                     <Button x:Name="btnClose" Grid.Column="2" Content="Отмена" Margin="5,0,0,0" Click="btnClose_Click"></Button>
 

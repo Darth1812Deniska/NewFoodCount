@@ -25,6 +25,7 @@ namespace NewFoodCount
             InitializeComponent();
             AllUsers.LoadUsers();
             AllProducts.Load();
+            AllUserDayMenu.LoadMenus();
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -37,6 +38,7 @@ namespace NewFoodCount
         {
             AllUsers.SaveUsers();
             AllProducts.Save();
+            AllUserDayMenu.SaveMenus();
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)

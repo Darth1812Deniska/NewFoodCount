@@ -13,7 +13,7 @@ namespace NewFoodCount
     /// </summary>
     public class Dish
     {
-        private readonly Product _product;
+        private Product _product;
         private readonly Brush color;
         private readonly NutrientType addAsNutrientType;
         private double weight;
@@ -21,7 +21,7 @@ namespace NewFoodCount
         /// <summary>
         /// Продукт из которого состоит блюдо
         /// </summary>
-        public Product Product => _product;
+        public Product Product { get => _product; set => _product = value; }
         /// <summary> 
         /// Вес блюда
         /// </summary>
@@ -109,6 +109,8 @@ namespace NewFoodCount
             return -957662036 + EqualityComparer<Product>.Default.GetHashCode(Product);
         }
     }
+
+    [Serializable]
     public class DishCollection:List<Dish>
     {
         public double MaxProtein { get; set; }

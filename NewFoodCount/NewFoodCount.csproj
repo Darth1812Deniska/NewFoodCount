@@ -96,6 +96,7 @@
     <Compile Include="CalculateDayMenuWindow.cs">
       <DependentUpon>CalculateDayMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserDayMenu.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
