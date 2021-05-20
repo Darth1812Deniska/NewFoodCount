@@ -83,6 +83,9 @@
     <Compile Include="ProductSegmentControl.xaml.cs">
       <DependentUpon>ProductSegmentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SavingWindow.xaml.cs">
+      <DependentUpon>SavingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="AddProductWindow.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
@@ -93,6 +96,7 @@
     <Compile Include="CalculateDayMenuWindow.cs">
       <DependentUpon>CalculateDayMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserDayMenu.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductSegmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SavingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
