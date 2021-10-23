@@ -448,5 +448,16 @@ namespace NewFoodCount
             DayDishes.RecalculationFatToMax();
             UpdateAllSegmentControls();
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SavingWindow savingWindow = new SavingWindow(DayDishes, CurrentUser);
+            savingWindow.Show();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
