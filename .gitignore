@@ -16,3 +16,5 @@ NewFoodCount/packages/Extended.Wpf.Toolkit.3.5.0/
 NewFoodCount/packages/Extended.Wpf.Toolkit.3.7.0/
 
 NewFoodCount/packages/
+*.vsidx
+NewFoodCount/.vs/
