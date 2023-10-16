@@ -14,9 +14,9 @@ namespace NewFoodCount
     public class Dish
     {
         private Product _product;
-        private readonly Brush color;
-        private readonly NutrientType addAsNutrientType;
-        private double weight;
+        private readonly Brush _color;
+        private readonly NutrientType _addAsNutrientType;
+        private double _weight;
 
         /// <summary>
         /// Продукт из которого состоит блюдо
@@ -32,8 +32,8 @@ namespace NewFoodCount
         /// </summary>
         public double Weight
         {
-            get => weight;
-            set => weight = value;
+            get => _weight;
+            set => _weight = value;
         }
 
         public double Protein
@@ -60,22 +60,22 @@ namespace NewFoodCount
             set => SetCalorific(value);
         }
 
-        public Brush DishColor => color;
-        public NutrientType AddAsNutrientType => addAsNutrientType;
+        public Brush DishColor => _color;
+        public NutrientType AddAsNutrientType => _addAsNutrientType;
 
         public Dish()
         {
             Random r = new Random();
-            color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+            _color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
                 (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
 
         public Dish(Product product, NutrientType nutrientType)
         {
             this._product = product;
-            addAsNutrientType = nutrientType;
+            _addAsNutrientType = nutrientType;
             Random r = new Random();
-            color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+            _color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
                 (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
 
@@ -83,9 +83,9 @@ namespace NewFoodCount
         {
             _product = product;
             Weight = weight;
-            addAsNutrientType = nutrientType;
+            _addAsNutrientType = nutrientType;
             Random r = new Random();
-            color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
+            _color = new SolidColorBrush(Color.FromRgb((byte)r.Next(1, 255),
                 (byte)r.Next(1, 255), (byte)r.Next(1, 255)));
         }
 
@@ -111,22 +111,22 @@ namespace NewFoodCount
 
         private void SetProtein(double value)
         {
-            weight = Math.Round(value / Product.Protein, 2);
+            _weight = Math.Round(value / Product.Protein, 2);
         }
 
         private void SetCarbohydrate(double value)
         {
-            weight = Math.Round(value / Product.Carbohydrate, 2);
+            _weight = Math.Round(value / Product.Carbohydrate, 2);
         }
 
         private void SetFat(double value)
         {
-            weight = Math.Round(value / Product.Fat, 2);
+            _weight = Math.Round(value / Product.Fat, 2);
         }
 
         private void SetCalorific(double value)
         {
-            weight = Math.Round(value / Product.Calorific, 2);
+            _weight = Math.Round(value / Product.Calorific, 2);
         }
 
         public override string ToString()
@@ -292,7 +292,7 @@ namespace NewFoodCount
 
         public Dish EditDishFat(Product product, double newWeight)
         {
-            Dish dish = this.Find(x => x.Product == product);
+            Dish dish = this.Find(x => Equals(x.Product, product));
             dish.Fat = newWeight;
             return dish;
         }
