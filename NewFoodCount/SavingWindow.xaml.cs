@@ -33,13 +33,13 @@ namespace NewFoodCount
         public SavingWindow(DishCollection dayDishes, User selectedUser)
         {
             InitializeComponent();
-            cmbSelectedUser.ItemsSource = AllUsers.Users;
+            CmbSelectedUser.ItemsSource = AllUsers.Users;
             _selectedUser = selectedUser;
-            cmbSelectedUser.SelectedItem = SelectedUser;
+            CmbSelectedUser.SelectedItem = SelectedUser;
             _menuDishes = dayDishes;
-            lstResultList.ItemsSource = MenuDishes;
-            dtpMenuDate.SelectedDate = DateTime.Today;
-            _selectedDate = dtpMenuDate.SelectedDate.Value;
+            LstResultList.ItemsSource = MenuDishes;
+            DtpMenuDate.SelectedDate = DateTime.Today;
+            _selectedDate = DtpMenuDate.SelectedDate.Value;
 
         }
 

@@ -19,7 +19,7 @@ namespace NewFoodCount
     /// </summary>
     public partial class AddUserWindow : Window
     {
-        private string UserName { get; set; }
+        public string UserName { get; set; }
         private Gender UserGender => GetUserGender();
         private DateTime UserBirthDate { get; set; }
         private int UserHeight { get; set; }
@@ -34,19 +34,19 @@ namespace NewFoodCount
 
         private int GetTrainingCount()
         {
-            string stringCount = cmbTrainingNumber.Text;
+            string stringCount = CmbTrainingNumber.Text;
             return Convert.ToInt32(stringCount);
         }
 
         private Gender GetUserGender()
         {
-            return (rbMale.IsChecked == true) ? Gender.Male : Gender.Female;
+            return (RbMale.IsChecked == true) ? Gender.Male : Gender.Female;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User(txtName.Text, UserGender, calBirthDay.SelectedDate.Value,
-                (int)udHeight.Value, (double)udWeight.Value, (UserPurpose)cmbPurpose.SelectedItem, TrainingCount);
+            User user = new User(TxtName.Text, UserGender, CalBirthDay.SelectedDate.Value,
+                (int)UdHeight.Value, (double)UdWeight.Value, (UserPurpose)CmbPurpose.SelectedItem, TrainingCount);
             AllUsers.Users.Add(user);
             Close();
         }

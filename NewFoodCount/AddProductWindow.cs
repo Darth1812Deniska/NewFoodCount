@@ -30,20 +30,20 @@ namespace NewFoodCount
         }
         private string GetProductName()
         {
-            return txtProductName.Text;
+            return TxtProductName.Text;
         }
         private double GetProtein ()
         {
             double result = 0;
-            if (!string.IsNullOrEmpty( udProtein.Text))
+            if (!string.IsNullOrEmpty( UdProtein.Text))
             {
-                if (rb100.IsChecked == true)
+                if (Rb100.IsChecked == true)
                 {
-                    result = (double)udProtein.Value / 100;
+                    result = (double)UdProtein.Value / 100;
                 }
                 else
                 {
-                    result = (double)udProtein.Value;
+                    result = (double)UdProtein.Value;
                 }
             }
             return result;
@@ -52,15 +52,15 @@ namespace NewFoodCount
         private double GetCarbohydrate()
         {
             double result = 0;
-            if (!string.IsNullOrEmpty(udCarbohydrate.Text))
+            if (!string.IsNullOrEmpty(UdCarbohydrate.Text))
             {
-                if (rb100.IsChecked == true)
+                if (Rb100.IsChecked == true)
                 {
-                    result = (double)udCarbohydrate.Value / 100;
+                    result = (double)UdCarbohydrate.Value / 100;
                 }
                 else
                 {
-                    result = (double)udCarbohydrate.Value;
+                    result = (double)UdCarbohydrate.Value;
                 }
             }
             return result;
@@ -69,15 +69,15 @@ namespace NewFoodCount
         private  double GetFat()
         {
             double result = 0;
-            if (!string.IsNullOrEmpty(udFat.Text))
+            if (!string.IsNullOrEmpty(UdFat.Text))
             {
-                if (rb100.IsChecked == true)
+                if (Rb100.IsChecked == true)
                 {
-                    result = (double)udFat.Value / 100;
+                    result = (double)UdFat.Value / 100;
                 }
                 else
                 {
-                    result = (double)udFat.Value;
+                    result = (double)UdFat.Value;
                 }
             }
             return result;
@@ -86,15 +86,15 @@ namespace NewFoodCount
         private double GetCalorific()
         {
             double result = 0;
-            if (!string.IsNullOrEmpty(udCalorific.Text))
+            if (!string.IsNullOrEmpty(UdCalorific.Text))
             {
-                if (rb100.IsChecked == true)
+                if (Rb100.IsChecked == true)
                 {
-                    result = (double)udCalorific.Value / 100;
+                    result = (double)UdCalorific.Value / 100;
                 }
                 else
                 {
-                    result = (double)udCalorific.Value;
+                    result = (double)UdCalorific.Value;
                 }
             }
             return result;
